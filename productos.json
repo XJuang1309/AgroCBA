@@ -1,0 +1,16 @@
+[
+  {
+    "codigo": "P001",
+    "nombre": "Fer",
+    "categoria": "Ins",
+    "cantidad": 2,
+    "precio": 13000.0
+  },
+  {
+    "codigo": "P002",
+    "nombre": "Agua",
+    "categoria": "Ins",
+    "cantidad": 3,
+    "precio": 15000.0
+  }
+]

@@ -10,7 +10,14 @@ def mostrar_menu():
     print("4. Actualizar producto")
     print("5. Eliminar producto")
     print("6. Mostrar valor total del inventario")
-    print("7. Salir")
+    print("7. Total de unidades existentes")
+    print("8. Producto de mayor precio")
+    print("9. Producto con mayor cantidad")
+    print("10. Consultar por categoria")
+    print("11. Ordenar productos alfabeticamente")
+    print("12. Productos con bajo inventario")
+    print("13. Guardar datos en JSON")
+    print("14. Salir")
     print("=====================================")
 
 # Permite registrar productos con validaciones
@@ -150,6 +157,91 @@ def calcular_inventario():
             print(f"Error al calcular {p['codigo']}")
     print(f"Valor total: {total}\n")
 
+def total_unidades():
+    print("\n=== TOTAL DE UNIDADES ===")
+    total = 0
+    for p in productos:
+        total = total + int(p["cantidad"])
+    print(f"Total de unidades: {total}\n")
+
+def mayor_precio():
+    print("\n=== PRODUCTO DE MAYOR PRECIO ===")
+    if len(productos) == 0:
+        print("No hay productos.\n")
+        return
+    
+    mayor = productos[0]
+    for p in productos:
+        if float(p["precio"]) > float(mayor["precio"]):
+            mayor = p
+    
+    print(f"Codigo: {mayor['codigo']}")
+    print(f"Nombre: {mayor['nombre']}")
+    print(f"Precio: {mayor['precio']}\n")
+
+def mayor_cantidad():
+    print("\n=== PRODUCTO CON MAYOR CANTIDAD ===")
+    if len(productos) == 0:
+        print("No hay productos.\n")
+        return
+    
+    mayor = productos[0]
+    for p in productos:
+        if int(p["cantidad"]) > int(mayor["cantidad"]):
+            mayor = p
+    
+    print(f"Codigo: {mayor['codigo']}")
+    print(f"Nombre: {mayor['nombre']}")
+    print(f"Cantidad: {mayor['cantidad']}\n")
+
+def consultar_categoria():
+    print("\n=== CONSULTAR POR CATEGORIA ===")
+    categoria = input("Categoria a buscar: ").strip()
+    
+    encontrados = []
+    for p in productos:
+        if p["categoria"].lower() == categoria.lower():
+            encontrados.append(p)
+    
+    if len(encontrados) == 0:
+        print("No hay productos en esa categoria.\n")
+    else:
+        for p in encontrados:
+            print(f"Codigo: {p['codigo']}, Nombre: {p['nombre']}, Cantidad: {p['cantidad']}, Precio: {p['precio']}")
+        print()
+
+def ordenar_alfabeticamente():
+    print("\n=== PRODUCTOS ORDENADOS ALFABETICAMENTE ===")
+    if len(productos) == 0:
+        print("No hay productos.\n")
+        return
+    
+    ordenados = sorted(productos, key=lambda x: x["nombre"])
+    for p in ordenados:
+        print(f"Codigo: {p['codigo']}, Nombre: {p['nombre']}, Cantidad: {p['cantidad']}, Precio: {p['precio']}")
+    print()
+
+def bajo_inventario():
+    print("\n=== PRODUCTOS CON BAJO INVENTARIO (<=5) ===")
+    bajos = []
+    for p in productos:
+        if int(p["cantidad"]) <= 5:
+            bajos.append(p)
+    
+    if len(bajos) == 0:
+        print("No hay productos con bajo inventario.\n")
+    else:
+        for p in bajos:
+            print(f"Codigo: {p['codigo']}, Nombre: {p['nombre']}, Cantidad: {p['cantidad']}")
+        print()
+
+def guardar_json():
+    import json
+    print("\n=== GUARDAR EN JSON ===")
+    with open("productos.json", "w") as archivo:
+        json.dump(productos, archivo, indent=2)
+    print("Datos guardados en productos.json\n")
+
 def main():
     while True:
         mostrar_menu()
@@ -167,6 +259,20 @@ def main():
         elif opcion == "6":
             calcular_inventario()
         elif opcion == "7":
+            total_unidades()
+        elif opcion == "8":
+            mayor_precio()
+        elif opcion == "9":
+            mayor_cantidad()
+        elif opcion == "10":
+            consultar_categoria()
+        elif opcion == "11":
+            ordenar_alfabeticamente()
+        elif opcion == "12":
+            bajo_inventario()
+        elif opcion == "13":
+            guardar_json()
+        elif opcion == "14":
             print("Adios!")
             break
         else:
