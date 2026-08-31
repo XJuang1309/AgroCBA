@@ -16,41 +16,54 @@ def mostrar_menu():
 # Permite registrar productos con validaciones
 def registrar_producto():
     print("\n=== REGISTRAR PRODUCTO ===")
+    
+    # Validar codigo no vacio
     codigo = input("Codigo: ").strip()
     if codigo == "":
-        print("Error: codigo vacio.\n")
+        print("Error: codigo no puede estar vacio.\n")
         return
+    
+    # Validar codigo no duplicado
     for p in productos:
         if p["codigo"] == codigo:
-            print("Error: codigo duplicado.\n")
+            print("Error: codigo ya existe.\n")
             return
+    
+    # Validar nombre no vacio
     nombre = input("Nombre: ").strip()
     if nombre == "":
-        print("Error: nombre vacio.\n")
+        print("Error: nombre no puede ser vacio.\n")
         return
+    
+    # Validar categoria no vacia
     categoria = input("Categoria: ").strip()
     if categoria == "":
-        print("Error: categoria vacia.\n")
+        print("Error: categoria no puede ser vacia.\n")
         return
+    
+    # Validar cantidad >= 0
     try:
         cantidad = int(input("Cantidad: "))
         if cantidad < 0:
-            print("Error: cantidad negativa.\n")
+            print("Error: cantidad no puede ser negativa.\n")
             return
-    except:
-        print("Error: cantidad debe ser numero.\n")
+    except ValueError:
+        print("Error: cantidad debe ser numero entero.\n")
         return
+    
+    # Validar precio > 0
     try:
         precio = float(input("Precio: "))
         if precio <= 0:
             print("Error: precio debe ser mayor que cero.\n")
             return
-    except:
+    except ValueError:
         print("Error: precio debe ser numero.\n")
         return
+    
     producto = {"codigo": codigo, "nombre": nombre, "categoria": categoria, "cantidad": cantidad, "precio": precio}
     productos.append(producto)
-    print("Producto registrado.\n")
+    print("Producto registrado correctamente.\n")
 
 # Muestra todos los productos registrados
 def consultar_productos():
