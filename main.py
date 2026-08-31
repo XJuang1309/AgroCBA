@@ -66,6 +66,7 @@ def consultar_productos():
             print(f"   Precio: {p['precio']}")
             print()
             
+# Busca producto por codigo            
 def buscar_producto():
     print("\n=== BUSCAR PRODUCTO ===")
     codigo = input("Codigo: ").strip()
