@@ -108,6 +108,7 @@ def actualizar_producto():
             return
     print("Producto no encontrado.\n")
 
+# Elimina un producto con confirmacion
 def eliminar_producto():
     print("\n=== ELIMINAR PRODUCTO ===")
     codigo = input("Codigo: ").strip()
