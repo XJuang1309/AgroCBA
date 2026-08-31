@@ -123,6 +123,7 @@ def eliminar_producto():
             return
     print("Producto no encontrado.\n")
 
+# Calcula el valor total del inventario
 def calcular_inventario():
     print("\n=== VALOR TOTAL DEL INVENTARIO ===")
     total = 0
