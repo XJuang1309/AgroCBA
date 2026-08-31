@@ -65,7 +65,7 @@ def consultar_productos():
             print(f"   Cantidad: {p['cantidad']}")
             print(f"   Precio: {p['precio']}")
             print()
-            
+
 # Busca producto por codigo            
 def buscar_producto():
     print("\n=== BUSCAR PRODUCTO ===")
@@ -78,6 +78,7 @@ def buscar_producto():
     if not encontrado:
         print("Producto no encontrado.\n")
 
+# Actualiza datos del producto
 def actualizar_producto():
     print("\n=== ACTUALIZAR PRODUCTO ===")
     codigo = input("Codigo: ").strip()
