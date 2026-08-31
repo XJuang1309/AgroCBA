@@ -52,6 +52,7 @@ def registrar_producto():
     productos.append(producto)
     print("Producto registrado.\n")
 
+# Muestra todos los productos registrados
 def consultar_productos():
     print("\n=== CONSULTAR PRODUCTOS ===")
     if len(productos) == 0:
