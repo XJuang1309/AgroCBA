@@ -1,5 +1,5 @@
 productos = []
-
+c
 def mostrar_menu():
     print("=====================================")
     print("      SISTEMA AGROCBA")
