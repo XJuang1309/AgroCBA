@@ -14,27 +14,98 @@ def mostrar_menu():
     print("=====================================")
 
 def registrar_producto():
-    pass
+    print("\n=== REGISTRAR PRODUCTO ===")
+    codigo = input("Codigo: ")
+    nombre = input("Nombre: ")
+    categoria = input("Categoria: ")
+    cantidad = input("Cantidad: ")
+    precio = input("Precio: ")
+    
+    producto = {
+        "codigo": codigo,
+        "nombre": nombre,
+        "categoria": categoria,
+        "cantidad": cantidad,
+        "precio": precio
+    }
+    
+    productos.append(producto)
+    print("Producto registrado.\n")
 
 def consultar_productos():
-    pass
+    print("\n=== CONSULTAR PRODUCTOS ===")
+    if len(productos) == 0:
+        print("No hay productos registrados.\n")
+    else:
+        for p in productos:
+            print(f"Codigo: {p['codigo']}, Nombre: {p['nombre']}, Categoria: {p['categoria']}, Cantidad: {p['cantidad']}, Precio: {p['precio']}")
+    print()
 
 def buscar_producto():
-    pass
+    print("\n=== BUSCAR PRODUCTO ===")
+    codigo = input("Codigo a buscar: ")
+    encontrado = False
+    for p in productos:
+        if p["codigo"] == codigo:
+            print(f"Codigo: {p['codigo']}, Nombre: {p['nombre']}, Categoria: {p['categoria']}, Cantidad: {p['cantidad']}, Precio: {p['precio']}\n")
+            encontrado = True
+    if not encontrado:
+        print("Producto no encontrado.\n")
 
 def actualizar_producto():
-    pass
+    print("\n=== ACTUALIZAR PRODUCTO ===")
+    codigo = input("Codigo del producto a actualizar: ")
+    for p in productos:
+        if p["codigo"] == codigo:
+            print("Deja los campos en blanco para no cambiar")
+            nombre = input("Nombre: ")
+            categoria = input("Categoria: ")
+            cantidad = input("Cantidad: ")
+            precio = input("Precio: ")
+            
+            if nombre != "":
+                p["nombre"] = nombre
+            if categoria != "":
+                p["categoria"] = categoria
+            if cantidad != "":
+                p["cantidad"] = cantidad
+            if precio != "":
+                p["precio"] = precio
+            
+            print("Producto actualizado.\n")
+            return
+    print("Producto no encontrado.\n")
 
 def eliminar_producto():
-    pass
+    print("\n=== ELIMINAR PRODUCTO ===")
+    codigo = input("Codigo del producto a eliminar: ")
+    for i, p in enumerate(productos):
+        if p["codigo"] == codigo:
+            confirmacion = input("Confirma eliminacion? (s/n): ")
+            if confirmacion == "s":
+                productos.pop(i)
+                print("Producto eliminado.\n")
+            else:
+                print("Eliminacion cancelada.\n")
+            return
+    print("Producto no encontrado.\n")
 
 def calcular_inventario():
-    pass
+    print("\n=== VALOR TOTAL DEL INVENTARIO ===")
+    total = 0
+    for p in productos:
+        try:
+            cantidad = float(p["cantidad"])
+            precio = float(p["precio"])
+            total = total + (cantidad * precio)
+        except:
+            pass
+    print(f"Valor total: {total}\n")
 
 def main():
     while True:
         mostrar_menu()
-        opcion = input("Seleccione una opción: ")
+        opcion = input("Seleccione una opcion: ")
         
         if opcion == "1":
             registrar_producto()
@@ -49,10 +120,10 @@ def main():
         elif opcion == "6":
             calcular_inventario()
         elif opcion == "7":
-            print("¡Hasta luego!")
+            print("Hasta luego!")
             break
         else:
-            print("Opción inválida. Intente de nuevo.\n")
+            print("Opcion invalida.\n")
 
 if __name__ == "__main__":
     main()
