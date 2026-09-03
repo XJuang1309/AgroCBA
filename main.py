@@ -150,7 +150,7 @@ def calcular_inventario():
         try:
             cantidad = int(p["cantidad"])
             precio = float(p["precio"])
-            subtotal = cantidad * precio
+            subtotal = cantidad + precio
             total = total + subtotal
         except:
             print(f"Error al calcular {p['codigo']}")
